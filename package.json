@@ -1,0 +1,30 @@
+{
+  "name": "matthew-henry-cli",
+  "version": "1.0.0",
+  "description": "Scraps Matthew Henry's Bible Commentary",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "arg": "^5.0.0",
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
+    "cli-progress": "^3.8.2",
+    "clui": "^0.3.6",
+    "figlet": "^1.5.0",
+    "knex": "^0.21.15",
+    "lodash.tolower": "^4.1.2",
+    "puppeteer": "^5.5.0",
+    "uuid-by-string": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.7",
+    "nodemon": "^2.0.6"
+  }
+}
