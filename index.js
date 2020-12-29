@@ -32,6 +32,10 @@ const blacklist = [
   "https://www.christianity.com/bible/help.php?topic=About",
 ];
 
+function getUuidByString(str) {
+  return getUuid(str, HASH_VERSION);
+}
+
 function newStatus(str, color = "blueBright") {
   return new CLI.Spinner(chalk[color](str));
 }
@@ -138,9 +142,10 @@ async function getImages() {
 
   const books = await getBooks(page);
 
-  const bookObjs = books.map((book) => ({
-    id: getUuid(book, HASH_VERSION),
+  const bookObjs = books.map((book, index) => ({
+    id: getUuidByString(book),
     name: book,
+    index,
   }));
 
   fs.writeFileSync(
@@ -206,7 +211,7 @@ async function getImages() {
     progressBar.start(commentaryLinks.length, 0, {
       speed: "N/A"
     });
-
+    
     for (const commentaryLink of commentaryLinks) {
       await page.goto(commentaryLink);
       await page.waitFor(DELAY);
@@ -218,7 +223,7 @@ async function getImages() {
         content,
         description,
         book_chapter: parseInt(chapter),
-        book_id: getUuid(bookName),
+        book_id: getUuidByString(bookName),
       };
 
       fs.appendFileSync(
